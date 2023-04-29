@@ -20,7 +20,7 @@ public class ShortUrlController {
               // return ResponseEntity.badRequest().body("Invalid URL");
           // }
 
-           String savedUserUrl = shortURLService.shortenUrl(userURL);
+           String savedUserURL = shortURLService.recieveUrl(userURL);
            return ResponseEntity.ok(userURL);
     }
 
