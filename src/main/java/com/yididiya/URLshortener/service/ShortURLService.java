@@ -11,7 +11,7 @@ import java.util.Map;
 public class ShortURLService {
     private final Map<String, String> urlMap = new HashMap<>();
 
-    public String recieveUrl(String userURL) {
+    public String receiveUrl(String userURL) {
         System.out.println("Received data: " + userURL);
         String shortUrl = shortenUrl(userURL);
         return userURL;
@@ -30,8 +30,9 @@ public class ShortURLService {
             String hash = sb.toString();
 
             String shortURL = hash.substring(0, 8);
-            System.out.println("shorturl: " + shortURL);
-            return shortURL;
+            urlMap.put(userURL, shortURL);
+            System.out.println("short url" + shortURL);
+           return shortURL;
         } catch (NoSuchAlgorithmException e){
             return null;
         }

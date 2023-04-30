@@ -16,17 +16,13 @@ public class ShortUrlController {
     }
        @PostMapping("/rawUrl")
        public ResponseEntity<String> recieveUserURL(@RequestBody String userURL) {
-         //  if (!isValidUrl(userURL)) {
-              // return ResponseEntity.badRequest().body("Invalid URL");
-          // }
-
-           String savedUserURL = shortURLService.recieveUrl(userURL);
+           String savedUserURL = shortURLService.receiveUrl(userURL);
            return ResponseEntity.ok(userURL);
     }
 
-      //  @GetMapping("/shorturl")
-      //public List<URLModel> getUrls(){
-      //  return shortURLService.getUrls();
-      //}
+    @GetMapping("/shorturl")
+    public String redirect( String shortUrl){
+       return "get hash here";
+    }
 
 }

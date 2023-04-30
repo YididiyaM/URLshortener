@@ -2,12 +2,12 @@ package com.yididiya.URLshortener.model;
 
 public class URLModel {
 
-    private String rawUrl;
-    public URLModel(String rawUrl) {
-        this.rawUrl = rawUrl;
+    private String shortURL;
+    public URLModel(String shortURL) {
+        this.shortURL = shortURL;
     }
 
-    public String getRawUrl() {
-        return rawUrl;
+    public String getShortURL() {
+        return shortURL;
     }
 }
