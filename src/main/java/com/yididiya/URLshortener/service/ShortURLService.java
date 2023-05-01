@@ -13,8 +13,8 @@ public class ShortURLService {
 
     public String receiveUrl(String userURL) {
         shortenUrl(userURL);
-        System.out.println("reviened " + userURL);
-        return userURL;
+        System.out.println("recie " + userURL);
+         return userURL;
     }
 
     public Map<String, String> shortenUrl(String userURL){
@@ -28,20 +28,16 @@ public class ShortURLService {
             }
 
             String hash = sb.toString();
-
             String shortURL = hash.substring(0, 8);
-
             urlMap.put("userURL", userURL);
-            urlMap.put("short Url", shortURL);
-            System.out.println("hashmap shortenurl " + urlMap);
-            return urlMap;
+            urlMap.put("shortURL", shortURL);
+             return urlMap;
         } catch (NoSuchAlgorithmException e){
             return null;
         }
     }
     public Map<String, String> getUrlMap() {
-        System.out.println("hashmap geturlmap " + urlMap);
-        return urlMap;
+             return urlMap;
     }
 }
 
