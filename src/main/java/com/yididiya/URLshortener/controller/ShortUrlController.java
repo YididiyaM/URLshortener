@@ -4,6 +4,8 @@ import com.yididiya.URLshortener.service.ShortURLService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping
 @CrossOrigin(origins = "http://localhost:3000")
@@ -20,9 +22,14 @@ public class ShortUrlController {
            return ResponseEntity.ok(userURL);
     }
 
-    @GetMapping("/shorturl")
-    public String redirect( String shortUrl){
-       return "get hash here";
+    @GetMapping("/shortUrl")
+    public Map<String, String> redirect(String shortUrl) {
+        Map<String, String> urlMap = shortURLService.getUrlMap();
+        System.out.println("hashmap redirect" + urlMap);
+
+
+        return urlMap;
     }
+
 
 }

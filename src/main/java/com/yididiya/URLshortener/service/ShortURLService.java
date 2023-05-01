@@ -12,12 +12,12 @@ public class ShortURLService {
     private final Map<String, String> urlMap = new HashMap<>();
 
     public String receiveUrl(String userURL) {
-        System.out.println("Received data: " + userURL);
-        String shortUrl = shortenUrl(userURL);
+        shortenUrl(userURL);
+        System.out.println("reviened " + userURL);
         return userURL;
     }
 
-    public String shortenUrl(String userURL){
+    public Map<String, String> shortenUrl(String userURL){
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] hashBytes = md.digest(userURL.getBytes());
@@ -30,12 +30,18 @@ public class ShortURLService {
             String hash = sb.toString();
 
             String shortURL = hash.substring(0, 8);
-            urlMap.put(userURL, shortURL);
-            System.out.println("short url" + shortURL);
-           return shortURL;
+
+            urlMap.put("userURL", userURL);
+            urlMap.put("short Url", shortURL);
+            System.out.println("hashmap shortenurl " + urlMap);
+            return urlMap;
         } catch (NoSuchAlgorithmException e){
             return null;
         }
+    }
+    public Map<String, String> getUrlMap() {
+        System.out.println("hashmap geturlmap " + urlMap);
+        return urlMap;
     }
 }
 
