@@ -13,8 +13,7 @@ public class ShortURLService {
 
     public String receiveUrl(String userURL) {
         shortenUrl(userURL);
-        System.out.println("recie " + userURL);
-        return userURL;
+         return userURL;
     }
 
     public Map<String, String> shortenUrl(String userURL){

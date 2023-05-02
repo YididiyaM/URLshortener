@@ -43,11 +43,9 @@ public class ShortUrlController {
         ObjectMapper expirationObjectMapper = new ObjectMapper();
         JsonNode expirationJsonNode = expirationObjectMapper.readTree(urlMap.get("userURL"));
         Long expiration = expirationJsonNode.get("expiration").asLong();
-            System.out.println("url " + urlMap);
 
         Long expirationTime = currentTimeMillis + (expiration * 60 * 1000);
-            System.out.println("url " + rawUrl);
-            System.out.println("expiration " + expirationTime);
+
         if (expirationTime != null && System.currentTimeMillis() > expirationTime) {
                 RedirectView redirectView = new RedirectView("/expired");
                 return redirectView;
