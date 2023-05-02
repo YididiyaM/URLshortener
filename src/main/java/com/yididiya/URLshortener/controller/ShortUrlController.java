@@ -35,16 +35,26 @@ public class ShortUrlController {
         @GetMapping("/{shortUrl}")
         public RedirectView redirect(@PathVariable String shortUrl) throws JsonProcessingException {
         Map<String, String> urlMap = shortURLService.getUrlMap();
+        long currentTimeMillis = shortURLService.getCurrentTimeMilli();
+        ObjectMapper urlObjectMapper = new ObjectMapper();
+        JsonNode urlJsonNode = urlObjectMapper.readTree(urlMap.get("userURL"));
+        String rawUrl = urlJsonNode.get("rawUrl").asText();
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(urlMap.get("userURL"));
-        String rawUrl = jsonNode.get("rawUrl").asText();
-        //String expiration = jsonNode.get("expiration").asText();
+        ObjectMapper expirationObjectMapper = new ObjectMapper();
+        JsonNode expirationJsonNode = expirationObjectMapper.readTree(urlMap.get("userURL"));
+        Long expiration = expirationJsonNode.get("expiration").asLong();
+            System.out.println("url " + urlMap);
 
-            RedirectView redirectView = new RedirectView();
-            redirectView.setUrl(rawUrl);
-        System.out.println("redirected " + jsonNode);
-        return redirectView;
+        Long expirationTime = currentTimeMillis + (expiration * 60 * 1000);
+            System.out.println("url " + rawUrl);
+            System.out.println("expiration " + expirationTime);
+        if (expirationTime != null && System.currentTimeMillis() > expirationTime) {
+                RedirectView redirectView = new RedirectView("/expired");
+                return redirectView;
+            } else {
+                RedirectView redirectView = new RedirectView(rawUrl);
+               return redirectView;
+            }
     }
 
 }

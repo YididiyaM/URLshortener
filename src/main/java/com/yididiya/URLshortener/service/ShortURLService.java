@@ -14,7 +14,7 @@ public class ShortURLService {
     public String receiveUrl(String userURL) {
         shortenUrl(userURL);
         System.out.println("recie " + userURL);
-         return userURL;
+        return userURL;
     }
 
     public Map<String, String> shortenUrl(String userURL){
@@ -26,18 +26,23 @@ public class ShortURLService {
             for (byte b : hashBytes) {
                 sb.append(String.format("%02x", b));
             }
+            System.out.println("shorten url " + userURL);
 
             String hash = sb.toString();
             String shortURL = hash.substring(0, 8);
             urlMap.put("userURL", userURL);
             urlMap.put("shortURL", shortURL);
-             return urlMap;
+            return urlMap;
         } catch (NoSuchAlgorithmException e){
             return null;
         }
     }
     public Map<String, String> getUrlMap() {
-             return urlMap;
+        return urlMap;
+    }
+
+    public Long getCurrentTimeMilli(){
+        long currentTimeMillis = System.currentTimeMillis();
+        return currentTimeMillis;
     }
 }
-
